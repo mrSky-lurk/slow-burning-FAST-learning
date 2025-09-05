@@ -1,7 +1,7 @@
 
-# 🚀 Slow-Burning FAST Learning
+# 🚀 Slow-Burning, FAST Learning
 
-Welcome to **slow-burning-FAST-learning** — where we light a fire under your FASTAPI journey, one cautious spark at a time! 🔥🐍
+Welcome to **slow-burning-FAST-learning** — where I light a fire under my FASTAPI journey, one cautious spark at a time! 🔥🐍
 
 This repo is all about learning FASTAPI (with a dash of PostgreSQL) from scratch. Expect hands-on experiments, inevitable mistakes, and a few "Aha!" moments along the way.
 
