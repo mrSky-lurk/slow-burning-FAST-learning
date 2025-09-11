@@ -12,5 +12,9 @@ This repo is all about learning FASTAPI (with a dash of PostgreSQL) from scratch
 
 **Pull requests, feedback, and friendly corrections welcome!**
 
+### Future Plans 🔮
+- Create a functional Button in UI(app.js) to get_product() by request query params
+
+>  *\**Frontend is borrowed from a friend* 😇
 ---
 *“May your bugs be shallow and your endpoints ever responsive.”*
