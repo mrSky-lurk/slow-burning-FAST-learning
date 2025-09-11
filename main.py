@@ -48,12 +48,6 @@ def greet(db: Session = Depends(db_init)):
     return "Hello Mr. Sky, I have nothing here for you!"
 
 
-@myapp.get("/products")
-def get_all_products(db: Session = Depends(db_init)):
-    all_products = db.query(db_model.Product).all()
-    return all_products
-
-
 # @myapp.get("/products/{id}")
 # def get_product(id: int, db: Session = Depends(db_init)):
 #     db_product = db.query(db_model.Product).filter(db_model.Product.id == id).first()
@@ -61,21 +55,29 @@ def get_all_products(db: Session = Depends(db_init)):
 #         return db_product
 #     return "Product not found"
 
+
 from fastapi import Query
 
-@myapp.get("/products")
-def get_products(ids: str = Query(...), db: Session = Depends(db_init)):
-    # Parse the comma-separated string into a list of integers
-    id_list = [int(id_str) for id_str in ids.split(",")]
-    
-    # Query the database for products with those IDs
-    products = db.query(db_model.Product).filter(db_model.Product.id.in_(id_list)).all()
-    
-    if products:
-        return products
-    else:
-        return {"message": "No products found for the given IDs"}
 
+@myapp.get("/products")
+def get_products(ids: str = Query(None), db: Session = Depends(db_init)):
+    if ids:
+        id_list = [int(id_str) for id_str in ids.split(",")]
+        products = (
+            db.query(db_model.Product).filter(db_model.Product.id.in_(id_list)).all()
+        )
+        if products:
+            return products
+        else:
+            return {"message": "No products found for the given IDs"}
+    else:
+        return get_all_products(db)
+
+
+# @myapp.get("/products") // single endlpoints handles All products or procducts with provided ids
+def get_all_products(db: Session):
+    all_products = db.query(db_model.Product).all()
+    return all_products
 
 
 @myapp.post("/products")
